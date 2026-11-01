@@ -1,1 +1,74 @@
-<!doctype html><html lang="vi"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Đà Nẵng AR – Hai bức tranh</title><script src="https://aframe.io/releases/1.6.0/aframe.min.js"></script><script src="https://cdn.jsdelivr.net/npm/mind-ar@1.2.5/dist/mindar-image-aframe.prod.js"></script><style>body{margin:0}#tip{position:fixed;z-index:9;top:10px;left:10px;right:10px;background:#ffffffdc;border-radius:10px;padding:10px;font:15px Arial;text-align:center;pointer-events:none}</style></head><body><div id="tip">Cho phép camera, rồi hướng vào một trong hai tranh mẫu</div><a-scene mindar-image="imageTargetSrc: ./targets.mind; autoStart: true;" color-space="sRGB" renderer="colorManagement: true" vr-mode-ui="enabled: false" device-orientation-permission-ui="enabled: false"><a-camera position="0 0 0" look-controls="enabled: false"></a-camera><a-entity mindar-image-target="targetIndex: 0"><a-entity position="0 0.1 0" rotation="-15 0 0"><a-box position="0 -0.12 0" width="1.1" height="0.08" depth="0.4" color="#234f83"></a-box><a-torus position="-.32 .04 0" radius=".25" radius-tubular=".025" arc="180" rotation="0 0 0" color="#ffd34c"></a-torus><a-torus position=".32 .04 0" radius=".25" radius-tubular=".025" arc="180" color="#ffd34c"></a-torus><a-cone position=".55 .20 0" radius-bottom=".10" radius-top="0" height=".32" rotation="0 0 -75" color="#ff7d1c" animation="property: scale; from: 1 1 1; to: 1.5 1.15 1.15; dir: alternate; dur: 330; loop: true"></a-cone><a-text value="CAU RONG - PHUN LUA" align="center" color="#ffffff" width="1.8" position="0 -.35 .05"></a-text></a-entity></a-entity><a-entity mindar-image-target="targetIndex: 1"><a-entity rotation="-18 0 0"><a-plane position="0 -.15 0" rotation="-90 0 0" width="1.2" height=".75" color="#23a6c7" animation="property: position; from: 0 -.15 0; to: 0 -.12 0; dir: alternate; dur: 1500; loop: true"></a-plane><a-cone position="-.20 .03 -.12" radius-bottom=".42" radius-top="0" height=".42" color="#27714b"></a-cone><a-cone position=".24 .06 -.14" radius-bottom=".34" radius-top="0" height=".45" color="#32855b"></a-cone><a-cylinder position=".22 .20 .02" radius=".035" height=".34" color="#f6f6ec"></a-cylinder><a-sphere position=".22 .39 .02" radius=".06" color="#f6f6ec"></a-sphere><a-text value="SON TRA - LINH UNG" align="center" color="#ffffff" width="1.7" position="0 -.38 .08"></a-text></a-entity></a-entity></a-scene></body></html>
+<!doctype html>
+<html lang="vi">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#091a31">
+<title>Đà Nẵng sống động | Tranh AR Cầu Rồng</title>
+<meta name="description" content="Trải nghiệm AR nhận diện hình ảnh Cầu Rồng Đà Nẵng và khám phá dự án Sơn Trà.">
+<script src="https://aframe.io/releases/1.6.0/aframe.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/mind-ar@1.2.5/dist/mindar-image-aframe.prod.js"></script>
+<style>
+:root{color-scheme:dark;--glass:rgba(7,24,47,.90);--soft:#c5daef;--yellow:#ffd06a}
+*{box-sizing:border-box}html,body{margin:0;width:100%;height:100%;overflow:hidden;font:14px system-ui,-apple-system,"Segoe UI",sans-serif;color:#fff;background:#07182a}
+.a-enter-vr,.a-enter-ar{display:none!important}
+header,#panel{position:fixed;z-index:20;left:12px;right:12px;background:var(--glass);border:1px solid #ffffff33;border-radius:18px;padding:13px 16px;backdrop-filter:blur(13px);box-shadow:0 12px 30px #0004}
+header{top:max(12px,env(safe-area-inset-top));pointer-events:none}
+header small{color:var(--yellow);font-weight:800;letter-spacing:.15em;font-size:10px}
+h1{font-size:19px;margin:5px 0}header p{margin:0;color:var(--soft);font-size:12px;line-height:1.5}
+#panel{bottom:max(12px,env(safe-area-inset-bottom))}
+#signal{display:flex;gap:10px;align-items:flex-start}
+#dot{background:var(--yellow);height:10px;width:10px;flex:none;border-radius:50%;margin-top:5px;box-shadow:0 0 0 4px #ffd06a20}
+#dot.ok{background:#74e8b4;box-shadow:0 0 0 4px #74e8b420}#dot.bad{background:#ff8c91}
+#message{font-size:14px;font-weight:750}#details{margin-top:3px;color:var(--soft);font-size:12px;line-height:1.5}
+.actions{display:flex;gap:8px;margin-top:12px}
+button{padding:9px 12px;border:1px solid #ffffff55;color:white;background:#ffffff15;border-radius:11px;font:700 12px system-ui;cursor:pointer}
+button.primary{background:var(--yellow);color:#162840;border-color:var(--yellow)}
+#help{display:none;margin-top:10px;color:#d6e7f8;font-size:12px;line-height:1.65}#help.show{display:block}
+#notice{position:fixed;z-index:25;inset:0;background:#081a30;display:none;align-items:center;justify-content:center;text-align:center;padding:25px}#notice.show{display:flex}
+</style>
+</head>
+<body>
+<header><small>DA NANG • IMAGE TRACKING AR</small><h1>Đà Nẵng sống động</h1><p>Tranh 01: Cầu Rồng phun lửa · Hướng camera vào chính bức ảnh đã dùng để tạo dữ liệu nhận diện.</p></header>
+<section id="panel" role="status" aria-live="polite">
+ <div id="signal"><div id="dot"></div><div><div id="message">Đang khởi tạo AR...</div><div id="details">Trang sẽ yêu cầu quyền truy cập camera.</div></div></div>
+ <div class="actions"><button type="button" id="helpBtn">Hướng dẫn / sửa lỗi</button><button type="button" id="retryBtn" class="primary">Tải lại</button></div>
+ <div id="help">① Mở bằng HTTPS trên Chrome hoặc Safari, chấp nhận quyền camera.<br>② Đưa toàn bộ ảnh Cầu Rồng đã dùng để tạo targets.mind vào khung hình, đủ sáng và không bị che phủ.<br>③ Giữ camera ổn định, không che hình bằng mã QR.<br>④ Nếu vẫn không nhận ra, cần tạo lại targets.mind từ chính ảnh gốc, đúng thứ tự mục tiêu.<br>⑤ Tranh Sơn Trà sẽ được kích hoạt khi có ảnh chính thức và biên dịch lại bộ nhận diện hai tranh.</div>
+</section>
+<div id="notice"><div><h2>Không thể khởi tạo AR</h2><p>Hãy kiểm tra HTTPS, quyền camera và kết nối mạng rồi thử lại.</p><button onclick="location.reload()">Thử lại</button></div></div>
+<a-scene id="scene" mindar-image="imageTargetSrc: ./targets.mind; autoStart: true; maxTrack: 1" color-space="sRGB" renderer="colorManagement: true; antialias: true" vr-mode-ui="enabled: false" device-orientation-permission-ui="enabled: false" loading-screen="enabled: false">
+<a-camera position="0 0 0" look-controls="enabled: false"></a-camera>
+<a-entity id="dragonTarget" mindar-image-target="targetIndex: 0">
+ <a-entity rotation="-18 0 0" scale=".89 .89 .89">
+  <a-box color="#133e66" position="0 -.18 0" width="1.25" height=".10" depth=".45"></a-box>
+  <a-box color="#2086c4" position="0 -.115 0" width="1.25" height=".026" depth=".48" animation="property:material.opacity;from:.6;to:1;dir:alternate;dur:1200;loop:true" material="transparent:true;opacity:.85"></a-box>
+  <a-box color="#f0b947" position="0 -.075 0" width="1.26" height=".026" depth=".19"></a-box>
+  <a-torus color="#ffd35b" position="-.4 .038 0" radius=".20" radius-tubular=".031" arc="180"></a-torus>
+  <a-torus color="#ffd35b" position="-.02 .038 0" radius=".20" radius-tubular=".031" arc="180"></a-torus>
+  <a-torus color="#ffd35b" position=".35 .038 0" radius=".20" radius-tubular=".031" arc="180"></a-torus>
+  <a-sphere color="#ffd052" position=".56 .15 0" scale=".16 .12 .12"></a-sphere>
+  <a-cone color="#ffb342" position=".57 .28 0" radius-bottom=".08" radius-top="0" height=".18" rotation="0 0 -18"></a-cone>
+  <a-entity position=".70 .17 0" rotation="0 0 -90">
+    <a-cone color="#ff6822" position="0 .18 0" radius-bottom=".085" radius-top="0" height=".38" material="emissive:#bb3600;emissiveIntensity:.55;transparent:true;opacity:.92" animation="property:scale;from:1 .7 1;to:1.2 1.4 1;dir:alternate;dur:240;loop:true"></a-cone>
+    <a-cone color="#ffe78b" position="0 .14 .005" radius-bottom=".043" radius-top="0" height=".23" material="emissive:#ffac29;emissiveIntensity:.7" animation="property:scale;from:.9 .7 1;to:1 1.2 1;dir:alternate;dur:300;loop:true"></a-cone>
+  </a-entity>
+  <a-text value="CAU RONG - DA NANG" align="center" color="#fff5d6" width="1.75" position="0 -.37 .15"></a-text>
+ </a-entity>
+</a-entity>
+</a-scene>
+<script>
+(function(){
+ const scene=document.getElementById('scene'),target=document.getElementById('dragonTarget'),dot=document.getElementById('dot'),m=document.getElementById('message'),d=document.getElementById('details');
+ function status(title,detail,kind){m.textContent=title;d.textContent=detail;dot.className=kind||''}
+ document.getElementById('helpBtn').addEventListener('click',()=>document.getElementById('help').classList.toggle('show'));
+ document.getElementById('retryBtn').addEventListener('click',()=>location.reload());
+ target.addEventListener('targetFound',()=>status('Đã nhận diện Cầu Rồng!','Mô hình 3D cách điệu đang xuất hiện trên tranh.','ok'));
+ target.addEventListener('targetLost',()=>status('Đang tìm lại bức tranh','Giữ đủ toàn bộ ảnh Cầu Rồng trong khung camera.',''));
+ scene.addEventListener('arReady',()=>status('Camera AR đã sẵn sàng','Hướng camera vào bức ảnh dùng để tạo targets.mind.','ok'));
+ scene.addEventListener('arError',()=>status('Không thể mở AR','Kiểm tra quyền camera, HTTPS và dữ liệu targets.mind.','bad'));
+ scene.addEventListener('loaded',()=>status('Đang tải dữ liệu nhận diện…','Cho phép camera nếu điện thoại yêu cầu.',''));
+ window.addEventListener('error',e=>{if(e.target&&e.target.tagName==='SCRIPT')status('Không tải được thư viện AR','Kiểm tra kết nối Internet hoặc trình duyệt có chặn CDN.','bad')},true);
+ if(!window.isSecureContext)status('Đường dẫn chưa an toàn','Hãy mở website https://, không mở file HTML trực tiếp.','bad');
+})();
+</script>
+</body></html>
